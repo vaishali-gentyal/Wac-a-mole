@@ -1,0 +1,67 @@
+body{
+    background-image: url('bg.jpg');
+}
+.container{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: auto;
+    margin: auto;
+    width: 645px;
+}
+#score,#time-left{
+    display: inline;
+}
+.grid{
+    width: 645px;
+    height: 627px;  
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.square{
+    height: 200px;
+    width: 200px;
+    border: 5px solid white;
+    transition: width 3s, height 4s;
+}
+.score-time h2{
+    background-color: rgb(133 4 4);
+    padding: 15px 5px 15px 5px;
+    border-radius: 10px;
+    margin: 20px 0 20px 0;
+}
+.score-time{
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    color: aliceblue;
+    margin: 25px 0 5px 0;
+    padding: 0 25px 0 25px;
+    background-color: rgba(69, 4, 4, 0.538);
+}
+.mole{
+    background-image: url('rabit.gif');
+    background-repeat: repeat;
+    background-size: cover;
+    background-color: rgb(41, 224, 215);
+    width: 210px;
+}
+button{
+    margin:20px 0 20px 0;
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: rgb(2, 54, 54);
+    border-style:none ;
+    border-radius: 10px;
+}

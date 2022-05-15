@@ -13,9 +13,11 @@ let result = 0;
 let hitPosition;
 let currentTime = 0;
 let timerId = null;
+var audio = new Audio("clickSound.mp4");
+var gameover = new Audio("gameover.mp3")
 
 function randomSquare() {
-  if (currentTime != 0) {
+  if (currentTime >= 0) {
     squares.forEach((square) => {
       square.classList.remove("mole");
     });
@@ -31,63 +33,72 @@ squares.forEach((square) => {
   square.addEventListener("mousedown", () => {
     if (square.id == hitPosition) {
       result++;
-      score.textContent = result;
+      score.textContent = result; 
+      audio.play();
       hitPosition = null;
     }
   });
 });
 function moveMole() {
-  if(currentTime == 0){
-    easy.addEventListener("click", () => {
-    timerId = setInterval(randomSquare, 1500);
+  easy.addEventListener("click", () => {
+    timerId = setInterval(randomSquare, 1000);
+    easy.disabled = true;
+    medium.disabled = true;
+    hard.disabled = true;
+
     easy.style.backgroundColor = "rgb(133 4 4)";
     medium.style.backgroundColor = "rgb(2, 54, 54)";
     hard.style.backgroundColor = "rgb(2, 54, 54)";
-    currentTime=30;
-    result=0
-    countDownTimerId = setInterval(countDown, 1000)
+    currentTime = 30;
+    result = 0;
+    countDownTimerId = setInterval(countDown, 1000);
   });
-}
-
-  if(currentTime == 0){
+  
   medium.addEventListener("click", () => {
-    timerId = setInterval(randomSquare, 1000);
+    timerId = setInterval(randomSquare, 750);
+    easy.disabled = true;
+    medium.disabled = true;
+    hard.disabled = true;
     medium.style.backgroundColor = "rgb(133 4 4)";
     easy.style.backgroundColor = "rgb(2, 54, 54)";
     hard.style.backgroundColor = "rgb(2, 54, 54)";
-    currentTime=30;
-    result=0
-    countDownTimerId = setInterval(countDown, 1000)
+    currentTime = 30;
+    result = 0;
+    countDownTimerId = setInterval(countDown, 1000);
   });
-}
-
-  if(currentTime == 0){
+  
   hard.addEventListener("click", () => {
     timerId = setInterval(randomSquare, 500);
+    easy.disabled = true;
+    medium.disabled = true;
+    hard.disabled = true;
     hard.style.backgroundColor = "rgb(133 4 4)";
     medium.style.backgroundColor = "rgb(2, 54, 54)";
     easy.style.backgroundColor = "rgb(2, 54, 54)";
-    currentTime=30;
-    result=0
-    countDownTimerId = setInterval(countDown, 1000)
+    currentTime = 30;
+    result = 0;
+    countDownTimerId = setInterval(countDown, 1000);
   });
-}
 }
 moveMole();
 
 function countDown() {
-    currentTime--;
-    timeLeft.textContent = currentTime;
-
-  if (currentTime == 0) {
+  currentTime--;
+  timeLeft.textContent = currentTime;
+  if(currentTime == 1) gameover.play()
+  if (currentTime <= 0) {
     clearInterval(countDownTimerId);
     clearInterval(timerId);
+    score.textContent=0
     squares.forEach((square) => {
       square.classList.remove("mole");
     });
-    alert("Game Over! Your final score is " + result);
+    
+    alert("Time Out! Your final score is " + result);
+    easy.disabled = false;
+    medium.disabled = false;
+    hard.disabled = false;
   }
-  
 }
 
 let countDownTimerId;
